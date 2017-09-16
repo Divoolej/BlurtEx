@@ -1,0 +1,9 @@
+<div class="btn-group">
+  <%= if logged_in?(@conn) do %>
+    <%= link "Sign Out", to: session_path(@conn, :delete, :access), method: :delete, class: "btn btn-xs btn-danger" %>
+    <%= link "#{current_user(@conn).email}", to: user_path(@conn, :show, current_user(@conn)), class: "btn btn-xs btn-primary" %>
+  <% else %>
+    <%= link "Sign Up", to: user_path(@conn, :new), class: "btn btn-info btn-xs" %>
+    <%= link "Sign In", to: session_path(@conn, :new), class: "btn btn-xs btn-primary" %>
+  <% end %>
+</div>
