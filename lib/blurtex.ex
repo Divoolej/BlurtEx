@@ -14,7 +14,6 @@ defmodule BlurtEx do
       supervisor(BlurtEx.Endpoint, []),
       # Start your own worker by calling: BlurtEx.Worker.start_link(arg1, arg2, arg3)
       # worker(BlurtEx.Worker, [arg1, arg2, arg3]),
-      supervisor(BlurtEx.Presence, []),
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

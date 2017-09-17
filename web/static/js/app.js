@@ -19,7 +19,7 @@ import "phoenix_html"
 // paths "./socket" or full ones "web/static/js/socket".
 
 // import socket from "./socket"
-import { Socket, Presence } from "phoenix"
+import { Socket } from "phoenix"
 const user = document.getElementById("user").innerText
 const socket = new Socket("/socket", { params: { user } })
 socket.connect()
@@ -38,7 +38,7 @@ const listBy = (user, { metas }) => ({
 
 const userList = document.getElementById("userList")
 const render = presences => {
-  userList.innerHTML = Presence.list(presences, listBy)
+  userList.innerHTML = []
     .map(presence => `
       <li>
         ${presence.user}
@@ -51,12 +51,10 @@ const render = presences => {
 
 const room = socket.channel("room:lobby")
 room.on("presence_state", state => {
-  presences = Presence.syncState(presences, state)
   render(presences)
 })
 
 room.on("presence_diff", diff => {
-  presences = Presence.syncDiff(presences, diff)
   render(presences)
 })
 
