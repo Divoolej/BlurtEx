@@ -1,6 +1,6 @@
 defmodule BlurtEx.RoomChannel do
   use BlurtEx.Web, :channel
-    alias BlurtEx.Presence
+  alias BlurtEx.Presence
 
   def join("room:lobby", _, socket) do
     send self(), :after_join
