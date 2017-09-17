@@ -28,6 +28,8 @@ defmodule BlurtEx.Router do
     resources "/users", UserController, only: [:new, :create]
     resources "/sessions", SessionController, only: [:create]
     get "/", SessionController, :new
+    get "/password_recovery", PasswordController, :forgot
+    post "/password_recovery", PasswordController, :recover
   end
 
   scope "/", BlurtEx do
