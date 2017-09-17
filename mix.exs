@@ -43,6 +43,7 @@ defmodule BlurtEx.Mixfile do
       {:cowboy, "~> 1.0"},
       {:comeonin, "~> 3.0"},
       {:guardian, "~> 0.14"},
+      {:bamboo, "~> 0.8"},
     ]
   end
 
