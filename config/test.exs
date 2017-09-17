@@ -17,3 +17,6 @@ config :blurtex, BlurtEx.Repo,
   database: "blurtex_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
+
+config :blurtex, Blurtex.Mailer,
+  adapter: Bamboo.TestAdapter

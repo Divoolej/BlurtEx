@@ -54,3 +54,6 @@ config :blurtex, BlurtEx.Repo,
   database: "chatter_dev",
   hostname: "localhost",
   pool_size: 10
+
+config :blurtex, BlurtEx.Mailer,
+  adapter: Bamboo.LocalAdapter
