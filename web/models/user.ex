@@ -7,6 +7,9 @@ defmodule BlurtEx.User do
     field :encrypted_password, :string
     field :password, :string, virtual: true
     field :is_admin, :boolean, default: false
+    field :is_online, :boolean, default: false
+    field :message, :text
+    field :modified_at, :datetime
 
     timestamps()
   end
