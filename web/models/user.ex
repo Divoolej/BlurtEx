@@ -8,8 +8,8 @@ defmodule BlurtEx.User do
     field :password, :string, virtual: true
     field :is_admin, :boolean, default: false
     field :is_online, :boolean, default: false
-    field :message, :text
-    field :modified_at, :datetime
+    field :message, :string
+    field :modified_at, :utc_datetime
 
     timestamps()
   end
