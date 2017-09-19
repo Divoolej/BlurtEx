@@ -13,11 +13,11 @@ use Mix.Config
 # which you typically run after static files are built.
 config :blurtex, BlurtEx.Endpoint,
   load_from_system_env: true,
-  http: [:inet6, port: {:system, "PORT"}],
   url: [scheme: "https", host: "blurtex.herokuapp.com", port: 443],
   force_ssl: [rewrite_on: [:x_forwarded_proto]],
   cache_static_manifest: "priv/static/cache_manifest.json",
   secret_key_base: System.get_env("SECRET_KEY_BASE")
+  # http: [:inet6, port: {:system, "PORT"}],
 
 # Do not print debug messages in production
 config :logger, level: :info
@@ -27,7 +27,7 @@ config :blurtex, BlurtEx.Mailer,
   api_key: System.get_env("MAILGUN_API_KEY"),
   domain: System.get_env("MAILGUN_DOMAIN")
 
-config :BlurtEx, BlurtEx.Repo,
+config :blurtex, BlurtEx.Repo,
   adapter: Ecto.Adapters.Postgres,
   url: System.get_env("DATABASE_URL"),
   pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10"),
