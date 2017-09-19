@@ -66,23 +66,33 @@ room.on("presence_diff", diff => {
 room.join()
 
 const messageInput = document.getElementById("newMessage")
-messageInput.addEventListener("keypress", e => {
-  if (e.keyCode == 13 && messageInput.value != "") {
+messageInput.addEventListener("keyup", e => {
+  if ((typeof messageInput.value) === 'string') {
     room.push("message:new", messageInput.value)
-    messageInput.value = ""
   }
 })
 
 const messageList = document.getElementById("messageList")
 const renderMessage = message => {
-  const messageElement = document.createElement("li")
-  messageElement.innerHTML = `
-    <b>${message.user}</b>
-    <i>${formattedTimestamp(message.timestamp)}</i>
-    <p>${message.body}</p>
-  `
-  messageList.appendChild(messageElement)
-  messageList.scrollTop = messageList.scrollHeight
+  const id = `user-${message.user_id}`
+  let messageElement = document.getElementById(id)
+  if (messageElement) {
+    messageElement.innerHTML = `
+      <b>${message.username}</b>
+      <i>${formattedTimestamp(message.timestamp)}</i>
+      <p>${message.body}</p>
+    `
+  } else {
+    messageElement = document.createElement("li")
+    messageElement.setAttribute('id', id)
+    messageElement.innerHTML = `
+      <b>${message.username}</b>
+      <i>${formattedTimestamp(message.timestamp)}</i>
+      <p>${message.body}</p>
+    `
+    messageList.appendChild(messageElement)
+    messageList.scrollTop = messageList.scrollHeight
+  }
 }
 
 room.on("message:new", message => renderMessage(message))
