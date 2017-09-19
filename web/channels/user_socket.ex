@@ -1,6 +1,8 @@
 defmodule BlurtEx.UserSocket do
   use Phoenix.Socket
 
+  import Guardian.Phoenix.Socket
+
   ## Channels
   channel "room:*", BlurtEx.RoomChannel
 
@@ -19,8 +21,16 @@ defmodule BlurtEx.UserSocket do
   #
   # See `Phoenix.Token` documentation for examples in
   # performing token verification on connect.
-  def connect(%{ "user" => user }, socket) do
-    {:ok, assign(socket, :user, user)}
+  # def connect(_, socket) do
+  #   :error
+  # end
+
+  def connect(%{ "guardian_token" => jwt } = params, socket) do
+    case sign_in(socket, jwt) do
+      { :ok, authenticated_socket, guardian_params } ->
+        { :ok, assign(authenticated_socket, :user, current_resource(authenticated_socket)) }
+      _ -> :error
+    end
   end
 
   # Socket id's are topics that allow you to identify all sockets for a given user:
