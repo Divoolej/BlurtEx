@@ -16,7 +16,7 @@ config :blurtex, BlurtEx.Endpoint,
   url: [scheme: "https", host: "blurtex.herokuapp.com", port: 443],
   force_ssl: [rewrite_on: [:x_forwarded_proto]],
   cache_static_manifest: "priv/static/cache_manifest.json",
-  secret_key_base: System.get_env("SECRET_KEY_BASE")
+  secret_key_base: System.get_env("SECRET_KEY_BASE"),
   http: [:inet6, port: {:system, "PORT"}],
 
 # Do not print debug messages in production
