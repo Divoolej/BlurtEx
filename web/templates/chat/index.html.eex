@@ -1,3 +1,7 @@
+<%= if Guardian.Plug.current_token(@conn) do %>
+  <small id="guardian_token" style="display: none;"><%= Guardian.Plug.current_token(@conn) %></small>
+<% end %>
+
 <div class="row">
   <div class="col-md-12">
     Hello there, <span id="user"><%= current_user(@conn).username %></span>
