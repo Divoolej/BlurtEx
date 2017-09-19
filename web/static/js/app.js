@@ -20,8 +20,11 @@ import "phoenix_html"
 
 // import socket from "./socket"
 import { Socket, Presence } from "phoenix"
+
+let guardianToken = document.getElementById("guardian_token").innerText;
+
 const user = document.getElementById("user").innerText
-const socket = new Socket("/socket", { params: { user } })
+const socket = new Socket("/socket", { params: { guardian_token: guardianToken } })
 socket.connect()
 
 let presences = {}
